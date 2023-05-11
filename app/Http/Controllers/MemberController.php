@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\UserRepository;
+use App\Repositories\MemberRepository;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class MemberController extends Controller
 {
-    private $userRepository;
+    protected $memberRespository;
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct(MemberRepository $memberRepository)
     {
-        $this->userRepository = $userRepository;
+        $this->memberRespository = $memberRepository;
     }
     /**
      * Display a listing of the resource.
@@ -20,9 +20,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data = $this->userRepository->getAll();
-        $result = $data['data'];
-        return view('master.user.index', compact('result'));
+        $isSuccess = $this->memberRespository->getAll();
+        $result = $isSuccess['data'];
+        return view('report.member.index', compact('result'));
     }
 
     /**
@@ -43,8 +43,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $isSuccess = $this->userRepository->post($request);
-        return response()->json($isSuccess, $isSuccess["status"]);
+        //
     }
 
     /**
@@ -55,7 +54,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        // 
+        //
     }
 
     /**
