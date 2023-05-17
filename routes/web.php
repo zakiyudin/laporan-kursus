@@ -34,4 +34,9 @@ Route::group(['prefix' => 'api'], function () {
 
 Route::group(['prefix' => 'member'], function () {
     Route::get('/', [App\Http\Controllers\MemberController::class, 'index'])->name('member.index');
+    
+
+    Route::group(['prefix' => 'report_member'], function () {
+        Route::get('/{id}', [App\Http\Controllers\ReportMemberController::class, 'index'])->name('report_member.index');
+    });
 });

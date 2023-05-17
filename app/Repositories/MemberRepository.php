@@ -10,10 +10,31 @@ use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 class MemberRepository implements InterfaceRepository 
 {
+    public function find($id)
+    {
+        try {
+            $data = Member::with('report_members')->find($id);
+
+            // dd($data->report_member);
+            return [
+                'status' => 200,
+                'success' => true,
+                'data' => $data
+            ];
+        } catch (\Throwable $th) {
+            //throw $th;
+            return [
+                'status' => $th->getCode(),
+                'success' => false,
+                'message' => $th->getMessage()
+            ];
+        }
+    }
+
     public function getAll()
     {
         try {
-            $data = Member::all();
+            $data = Member::latest()->get();
 
             return [
                 'status' => 200,

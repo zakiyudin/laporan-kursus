@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\ReportMember;
+
 class Member extends Model
 {
     use HasFactory;
@@ -17,4 +19,9 @@ class Member extends Model
         'address',
         'status'
     ];
+
+    public function report_members()
+    {
+        return $this->hasMany(ReportMember::class);
+    }
 }
