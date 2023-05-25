@@ -52,7 +52,10 @@ class ReportMemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->contact);
+        $isSuccess = $this->reportMemberRepository->post($request);
+        // dd($isSuccess);
+        return response()->json($isSuccess);
     }
 
     /**

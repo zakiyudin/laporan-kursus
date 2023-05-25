@@ -38,5 +38,6 @@ Route::group(['prefix' => 'member'], function () {
 
     Route::group(['prefix' => 'report_member'], function () {
         Route::get('/{id}', [App\Http\Controllers\ReportMemberController::class, 'index'])->name('report_member.index');
+        Route::post('/', [App\Http\Controllers\ReportMemberController::class, 'store'])->name('report_member.store');
     });
 });
