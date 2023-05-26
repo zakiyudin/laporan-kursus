@@ -55,6 +55,10 @@ class ReportMemberController extends Controller
         // dd($request->contact);
         $isSuccess = $this->reportMemberRepository->post($request);
         // dd($isSuccess);
+        if ($isSuccess['status'] == 403) {
+            # code...
+            return response()->json($isSuccess['message']);
+        }
         return response()->json($isSuccess);
     }
 

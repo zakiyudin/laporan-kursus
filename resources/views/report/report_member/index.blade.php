@@ -32,7 +32,6 @@
                                 <table id="anggota_dataTables" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="example1_info">
                                     <thead>
                                     <tr>
-                                        <th width="5%">No</th>
                                         <th>Tanggal</th>
                                         <th>Kitab</th>
                                         <th>Kontakan</th>
@@ -43,7 +42,6 @@
                                     <tbody>
                                         @foreach ($result->report_members as $report)
                                             <tr>
-                                                <td>{{ $report->id }}</td>
                                                 <td>{{ $report->date_course }}</td>
                                                 <td>{{ $report->book }}</td>
                                                 <td>{{ $report->contact }}</td>
@@ -69,7 +67,6 @@
                                     </tbody>
                                     <tfoot>
                                     <tr>
-                                        <th rowspan="1" colspan="1">No</th>
                                         <th rowspan="1" colspan="1">Tanggal</th>
                                         <th rowspan="1" colspan="1">Kitab</th>
                                         <th rowspan="1" colspan="1">Kontakan</th>
@@ -162,7 +159,7 @@
         });
 
         $(document).ready(function () {
-            $("#anggota_dataTables").DataTable();   
+            var datatable = $("#anggota_dataTables").DataTable();   
         });
 
         function showModal() {
@@ -179,8 +176,6 @@
             let member_id = $("#member_id").val()
             let _token = "{{ csrf_token() }}"
 
-            console.log(contact);
-
             $.ajax({
                 type: "post",
                 url: "{{ route('report_member.store') }}",
@@ -189,12 +184,15 @@
                 },
                 dataType: "json",
                 success: function (response) {
+                    // console.log(typeof(response.date_course));
+                    // console.log(response);
                     Swal.fire(
                         'Good job!',
                         response.message,
                         'success'
                     )
-                    console.log(response);
+
+                    location.reload()
                 },
                 error: function (response) {
                     console.error(response);

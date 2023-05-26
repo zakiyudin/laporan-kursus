@@ -35,6 +35,20 @@ class ReportMemberRepository implements InterfaceRepository
     public function post($request)
     {
         try {
+            $validator = Validator::make($request->all(), [
+                'date_course' => 'date|required',
+                'contact' => 'string|required',
+                'book' => 'required',
+                'attendance' => 'required'
+            ]);
+
+            if ($validator->fails()){
+                return [
+                    'status' => 403,
+                    'success' => false,
+                    'message' => $validator->errors()->getMessages()
+                ];
+            }
 
             ReportMember::create([
                 'member_id' => $request->member_id,
