@@ -36,6 +36,7 @@
                                         <th>Kitab</th>
                                         <th>Kontakan</th>
                                         <th>Kehadiran</th>
+                                        <th>Ket.</th>
                                         <th></th>
                                     </tr>
                                     </thead>
@@ -58,6 +59,7 @@
                                                         <span class="badge badge-danger">ABSEN</span>
                                                     </td>
                                                 @endif
+                                                <td>{{ $report->evidence }}</td>
                                                 <td>
                                                     <a href="#" class="btn btn-sm btn-warning">EDIT</a>
                                                     <a href="#" class="btn btn-sm btn-danger">HAPUS</a>
@@ -71,6 +73,7 @@
                                         <th rowspan="1" colspan="1">Kitab</th>
                                         <th rowspan="1" colspan="1">Kontakan</th>
                                         <th rowspan="1" colspan="1">Kehadiran</th>
+                                        <th rowspan="1" colspan="1">Ket.</th>
                                         <th rowspan="1" colspan="1"></th>
                                     </tr>
                                     </tfoot>
